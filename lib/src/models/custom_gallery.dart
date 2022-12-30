@@ -7,20 +7,20 @@ part of imgur.models;
 class CustomGallery implements BaseModel {
   /// Username of the account that created the custom gallery.
   @JsonKey(name: 'account_url')
-  String accountUrl;
+  String? accountUrl;
 
   /// The URL link to the custom gallery.
-  String link;
+  String? link;
 
   /// An array of all the tag names in the custom gallery.
-  List<String> tags;
+  List<String>? tags;
 
   /// The total number of gallery items in the custom gallery.
   @JsonKey(name: 'item_count')
-  int itemCount;
+  int? itemCount;
 
   /// An array of all the gallery items in the custom gallery.
-  List<dynamic> items;
+  List<dynamic>? items;
 
   CustomGallery({
     this.accountUrl,

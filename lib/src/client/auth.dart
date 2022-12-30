@@ -8,39 +8,39 @@ const String _authorizationRegexUrl =
 @JsonSerializable()
 class Authentication {
   @JsonKey(name: 'access_token')
-  String _accessToken;
+  String? _accessToken;
 
   @JsonKey(name: 'expires_in')
   // ignore: unused_field
-  String _expiresIn;
+  String? _expiresIn;
 
   @JsonKey(name: 'token_type')
   // ignore: unused_field
-  String _tokenType;
+  String? _tokenType;
 
   @JsonKey(name: 'refresh_token')
-  String _refreshToken;
+  String? _refreshToken;
 
   @JsonKey(name: 'account_username')
   // ignore: unused_field
-  String _accountUsername;
+  String? _accountUsername;
 
   @JsonKey(name: 'account_id')
   // ignore: unused_field
-  String _accountId;
+  String? _accountId;
 
   @JsonKey(ignore: true)
-  String _clientId;
+  String? _clientId;
 
   /// The default Authentication constructor.
   Authentication({
-    String accessToken,
-    String expiresIn,
-    String tokenType,
-    String refreshToken,
-    String accountUsername,
-    String accountId,
-    String clientId,
+    String? accessToken,
+    String? expiresIn,
+    String? tokenType,
+    String? refreshToken,
+    String? accountUsername,
+    String? accountId,
+    String? clientId,
   })  : _accessToken = accessToken,
         _expiresIn = expiresIn,
         _tokenType = tokenType,
@@ -54,12 +54,12 @@ class Authentication {
 
   /// Generate authentication from an OAuth2 authorization response.
   Authentication.fromAuthorization({
-    String accessToken,
-    String expiresIn,
-    String tokenType,
-    String refreshToken,
-    String accountUsername,
-    String accountId,
+    String? accessToken,
+    String? expiresIn,
+    String? tokenType,
+    String? refreshToken,
+    String? accountUsername,
+    String? accountId,
   })  : _accessToken = accessToken,
         _expiresIn = expiresIn,
         _tokenType = tokenType,
@@ -100,7 +100,8 @@ class Authentication {
           'is empty.');
     }
 
-    final resp = await http.Client().post('https://api.imgur.com/oauth2/token',
+    final resp = await http.Client().post(
+        Uri.parse("https://api.imgur.com/oauth2/token"),
         body: toJson().cast<String, String>());
 
     if (resp.statusCode != 200) {
@@ -122,12 +123,12 @@ class Authentication {
 
     final match = regExp.firstMatch(url);
     return Authentication.fromAuthorization(
-      accessToken: match.group(1),
-      expiresIn: match.group(2),
-      tokenType: match.group(3),
-      refreshToken: match.group(4),
-      accountUsername: match.group(5),
-      accountId: match.group(6),
+      accessToken: match?.group(1),
+      expiresIn: match?.group(2),
+      tokenType: match?.group(3),
+      refreshToken: match?.group(4),
+      accountUsername: match?.group(5),
+      accountId: match?.group(6),
     );
   }
 }

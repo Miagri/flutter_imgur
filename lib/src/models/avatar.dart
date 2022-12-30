@@ -5,10 +5,10 @@ part of imgur.models;
 class Avatar implements BaseModel {
   /// The avatar name.
   @JsonKey(nullable: true)
-  String name;
+  String? name;
 
   /// The avatar Url.
-  String location;
+  String? location;
 
   Avatar({this.name, this.location});
 
@@ -22,11 +22,11 @@ class Avatar implements BaseModel {
 class AvatarData implements BaseModel {
   /// The avatar name.
   @JsonKey(name: 'avatar_name', nullable: true)
-  String name;
+  String? name;
 
   /// The avatar Url.
   @JsonKey(name: 'avatar')
-  String location;
+  String? location;
 
   AvatarData({this.name, this.location});
 
@@ -41,15 +41,15 @@ class AvatarData implements BaseModel {
 class AvatarListData implements BaseModel {
   /// A list of available avatars.
   @JsonKey(name: 'available_avatars', toJson: baseModelListToJson)
-  List<Avatar> availableAvatars;
+  List<Avatar?>? availableAvatars;
 
   /// The total number of available avatars.
   @JsonKey(name: 'available_avatars_count')
-  int availableAvatarsCount;
+  int? availableAvatarsCount;
 
   /// If the avatars are default or not.
   @JsonKey(name: 'avatars_are_default')
-  bool avatarsAreDefault;
+  bool? avatarsAreDefault;
 
   AvatarListData({
     this.availableAvatars,

@@ -7,19 +7,19 @@ part of imgur.models;
 class GalleryProfile implements BaseModel {
   /// Total number of comments the user has made in the gallery.
   @JsonKey(name: 'total_gallery_comments')
-  int totalGalleryComments;
+  int? totalGalleryComments;
 
   /// Total number of user's favorite items in the gallery.
   @JsonKey(name: 'total_gallery_favorites')
-  int totalGalleryFavorites;
+  int? totalGalleryFavorites;
 
   /// Total number of images submitted by the user.
   @JsonKey(name: 'total_gallery_submissions')
-  int totalGallerySubmissions;
+  int? totalGallerySubmissions;
 
   /// An array of trophies that the user has.
   @JsonKey(toJson: baseModelListToJson)
-  List<Trophy> trophies;
+  List<Trophy?>? trophies;
 
   GalleryProfile(
       {this.totalGalleryComments,

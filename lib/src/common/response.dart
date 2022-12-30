@@ -6,7 +6,7 @@ class BaseResponse<T> {
   final int status;
   T data;
 
-  BaseResponse({this.success, this.status, this.data});
+  BaseResponse({required this.success,required this.status,required this.data});
 
   /// Initialize a [BaseResponse] instance from Json data.
   BaseResponse.fromJson(Map<String, dynamic> json)
@@ -18,20 +18,20 @@ class BaseResponse<T> {
 /// A class similar to BaseResponse, except that it contains a data array
 /// instead of a single element.
 class BaseResponseList<T> {
-  bool success;
-  int status;
-  List<T> data;
+  bool? success;
+  int? status;
+  List<T>? data;
 
-  BaseResponseList({this.data, this.success, this.status});
+  BaseResponseList({ this.data, this.success, this.status});
 
   /// Initialize a [BaseResponseList] instance from Json data.
   BaseResponseList.fromJson(Map<String, dynamic> json)
       : success = json['success'],
         status = json['status'],
         data = List<T>.from(
-            ((json['data'] as List<dynamic>)?.cast<Map<String, dynamic>>())
-                ?.map(_DynamicConverter<T>().fromJson)
-                ?.toList());
+            ((json['data'] as List<dynamic>).cast<Map<String, dynamic>>())
+                .map(_DynamicConverter<T>().fromJson)
+                .toList());
 }
 
 /// An helper class that converts JSON types to class and vice versa.
@@ -43,12 +43,12 @@ class _DynamicConverter<T> implements JsonConverter<T, Object> {
   /// If the type isn't a [BaseModel] instance then the type is returned
   /// without conversion.
   @override
-  T fromJson(Object json) {
+  T fromJson(dynamic json) {
     switch (T) {
       case AccountSettings:
         return AccountSettings.fromJson(json) as T;
       case Account:
-        return Account.fromJson(json) as T;
+        return Account.fromJson(json ) as T;
       case Album:
         return Album.fromJson(json) as T;
       case Avatar:

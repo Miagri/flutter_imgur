@@ -24,5 +24,5 @@ VoteType stringToVote(String input) {
   return VoteType.veto;
 }
 
-List<Map<String, dynamic>> baseModelListToJson(List<BaseModel> objects) =>
-    objects?.map((obj) => obj.toJson())?.toList();
+List<Map<String, dynamic>?>? baseModelListToJson(List<BaseModel?>? objects) =>
+    objects?.map((obj) => obj?.toJson()).toList();

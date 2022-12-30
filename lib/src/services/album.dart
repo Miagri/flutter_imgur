@@ -11,23 +11,23 @@ class AlbumService extends BaseService {
   /// https://apidocs.imgur.com/?version=latest#5369b915-ad8b-47b1-b44b-8e2561e41cee
   Future<Album> create({
     /// The image ids that you want to be included in the album.
-    String ids,
+    String? ids,
 
     /// The delete hashes of the images that you want to be included in the
     /// album.
-    String deleteHashes,
+    String? deleteHashes,
 
     /// The title of the album.
-    String title,
+    String? title,
 
     /// The description of the album.
-    String description,
+    String? description,
 
     /// Sets the privacy level of the album.
-    Privacy privacy,
+    Privacy? privacy,
 
     /// The ID of an image that you want to be the cover of the album.
-    String cover,
+    String? cover,
   }) async {
     final body = <String, String>{};
 
@@ -69,7 +69,7 @@ class AlbumService extends BaseService {
           .data;
 
   /// Get comments of a given album.
-  Future<List<Comment>> getComments(String albumId,
+  Future<List<Comment>?> getComments(String albumId,
           {BestSort sort = BestSort.best}) async =>
       BaseResponseList<Comment>.fromJson(json.decode((await client.request(
                   HttpMethod.GET,
@@ -89,7 +89,7 @@ class AlbumService extends BaseService {
   /// Get all images inside an album.
   ///
   /// https://apidocs.imgur.com/?version=latest#7dde894b-a967-4419-9be2-082fbf379109
-  Future<List<Image>> getImages(String albumId) async =>
+  Future<List<Image>?> getImages(String albumId) async =>
       BaseResponseList<Image>.fromJson(json.decode(
               (await client.request(HttpMethod.GET, '/3/album/$albumId/images'))
                   .body))

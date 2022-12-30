@@ -5,14 +5,14 @@ class Imgur {
   final String baseUrl;
   final http.Client client;
 
-  GalleryService _gallery;
-  ImageService _image;
-  AlbumService _album;
-  AccountService _account;
-  CommentService _comment;
+  GalleryService? _gallery;
+  ImageService? _image;
+  AlbumService? _album;
+  AccountService? _account;
+  CommentService? _comment;
 
   Imgur(this.auth,
-      {this.baseUrl = 'https://api.imgur.com/', http.Client httpClient})
+      {this.baseUrl = 'https://api.imgur.com/', http.Client? httpClient})
       : client = httpClient ?? http.Client();
 
   AccountService get account => _account ??= AccountService(this);
@@ -34,7 +34,7 @@ class Imgur {
     String path, {
 
     /// An optional [Map] of additional http headers.
-    Map<String, String> headers,
+    Map<String, String>? headers,
 
     /// An optional body to send with.
     dynamic body,
@@ -61,9 +61,9 @@ class Imgur {
   Future<http.Response> upload(
     HttpMethod method,
     String path, {
-    Map<String, String> headers,
-    Map<String, String> body,
-    List<http.MultipartFile> files,
+    Map<String, String>? headers,
+    Map<String, String>? body,
+    List<http.MultipartFile>? files,
   }) async {
     final uri = Uri.parse(baseUrl).resolve(path);
     final req = http.MultipartRequest(fmtType(method), uri);

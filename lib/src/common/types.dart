@@ -52,4 +52,4 @@ enum HttpMethod { GET, POST, PUT, DELETE }
 ///
 /// Sort.time.toString() => 'Sort.time'
 /// fmtType(Sort.time) => 'time'
-String fmtType(Object type) => type.toString().split('.').last;
+String fmtType(dynamic type) => type.toString().split('.').last;

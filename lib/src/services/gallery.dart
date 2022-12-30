@@ -9,7 +9,7 @@ class GalleryService extends BaseService {
   /// Get a list of galleries with provided parameters.
   ///
   /// https://apidocs.imgur.com/?version=latest#eff60e84-5781-4c12-926a-208dc4c7cc94
-  Future<List<GalleryAlbumImage>> list({
+  Future<List<GalleryAlbumImage>?> list({
     int page = 0,
     Section section = Section.hot,
     ViralSort sort = ViralSort.time,
@@ -29,7 +29,7 @@ class GalleryService extends BaseService {
   /// Search the gallery with a given query.
   ///
   /// https://apidocs.imgur.com/?version=latest#3c981acf-47aa-488f-b068-269f65aee3ce
-  Future<List<GalleryAlbumImage>> search(
+  Future<List<GalleryAlbumImage>?> search(
     String search, {
     int page = 0,
     ViralSort sort = ViralSort.time,
@@ -44,7 +44,7 @@ class GalleryService extends BaseService {
           .data;
 
   /// Get suggestions based on your search.
-  Future<List<String>> searchSuggestions(String search) async =>
+  Future<List<String>?> searchSuggestions(String search) async =>
       BaseResponseList<String>.fromJson(json.decode((await client.request(
                   HttpMethod.GET, '/3/reaction/suggest?q=$search'))
               .body))

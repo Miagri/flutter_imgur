@@ -6,10 +6,10 @@ part of imgur.models;
 @JsonSerializable()
 class Vote implements BaseModel {
   /// Number of upvotes.
-  int ups;
+  int? ups;
 
   /// Number of downvotes.
-  int downs;
+  int? downs;
 
   Vote({this.ups, this.downs});
 

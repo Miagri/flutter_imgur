@@ -6,22 +6,22 @@ part of imgur.models;
 @JsonSerializable()
 class Tag implements BaseModel {
   /// Name of the tag.
-  String name;
+  String? name;
 
   /// Number of followers for the tag.
-  int followers;
+  int? followers;
 
   /// Total number of gallery items for the tag.
   @JsonKey(name: 'total_items')
-  int totalItems;
+  int? totalItems;
 
   /// OPTIONAL, boolean representing whether or not the user is following the
   /// tag in their custom gallery.
   @JsonKey(nullable: true)
-  bool following;
+  bool? following;
 
   /// Gallery items with current tag.
-  List<dynamic> items;
+  List<dynamic>? items;
 
   Tag({this.name, this.followers, this.totalItems, this.following, this.items});
 

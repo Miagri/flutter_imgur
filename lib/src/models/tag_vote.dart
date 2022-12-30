@@ -6,16 +6,16 @@ part of imgur.models;
 @JsonSerializable()
 class TagVote implements BaseModel {
   /// Number of upvotes.
-  int ups;
+  int? ups;
 
   /// Number of downvotes.
-  int downs;
+  int? downs;
 
   /// Name of the tag.
-  String name;
+  String? name;
 
   /// Author of the tag.
-  String author;
+  String? author;
 
   TagVote({this.ups, this.downs, this.name, this.author});
 

@@ -6,14 +6,14 @@ part of imgur.models;
 @JsonSerializable()
 class Notification implements BaseModel {
   /// The ID for the notification.
-  int id;
+  int? id;
 
   /// The Account ID for the notification.
   @JsonKey(name: 'account_id')
-  int accountId;
+  int? accountId;
 
   /// Has the user viewed the image yet?
-  bool viewed;
+  bool? viewed;
 
   /// This can be any other model, currently only using comments and
   /// conversation metadata.

@@ -5,20 +5,20 @@ part of imgur.models;
 @JsonSerializable()
 class Account implements BaseModel {
   /// The account id for the username requested
-  String id;
+  String? id;
 
   /// The account username, will be the same as requested in the URL
-  String url;
+  String? url;
 
   /// A basic description the user has filled out
-  String bio;
+  String? bio;
 
   /// The reputation for the account, in it's numerical format.
-  double reputation;
+  double? reputation;
 
   /// The time of account creation
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
-  DateTime created;
+  DateTime? created;
 
   /// False if not a pro user, their expiration date if they are.
   @JsonKey(name: 'pro_expiration')

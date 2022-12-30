@@ -5,7 +5,7 @@ part of imgur.models;
 class AssociateImage implements BaseModel {
   /// Number of updated images.
   @JsonKey(name: 'images_updated')
-  int imagesUpdated;
+  int? imagesUpdated;
 
   AssociateImage({this.imagesUpdated});
 

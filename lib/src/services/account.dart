@@ -47,7 +47,7 @@ class AccountService extends BaseService {
   /// Return the comments the user has created.
   ///
   /// https://apidocs.imgur.com/?version=latest#a1813588-ec93-46c4-985b-9e53d7b1c316
-  Future<List<Comment>> getComments({
+  Future<List<Comment>?> getComments({
     String username = 'me',
     DateBestSort sort = DateBestSort.newest,
     int page = 0,
@@ -61,7 +61,7 @@ class AccountService extends BaseService {
   /// Return the user's favorite images in the gallery.
   ///
   /// https://apidocs.imgur.com/?version=latest#56a1d1ff-d203-4a6e-b54e-e49f9bdfbc0d
-  Future<List<GalleryAlbumImage>> getFavoriteGalleries({
+  Future<List<GalleryAlbumImage>?> getFavoriteGalleries({
     String username = 'me',
     int page = 0,
     FavoriteSort sort = FavoriteSort.newest,
@@ -77,7 +77,7 @@ class AccountService extends BaseService {
   /// in as the user.
   ///
   /// https://apidocs.imgur.com/?version=latest#a432a8e6-2ece-4544-bc7a-2999eb586f06
-  Future<List<GalleryAlbumImage>> getFavoriteImages({
+  Future<List<GalleryAlbumImage>?> getFavoriteImages({
     String username = 'me',
     int page = 0,
     FavoriteSort sort = FavoriteSort.newest,
@@ -100,7 +100,7 @@ class AccountService extends BaseService {
   /// Return all of the images associated with the account.
   ///
   /// https://apidocs.imgur.com/?version=latest#2e45daca-bd44-47f8-84b0-b3f2aa861735
-  Future<List<Image>> getImages({String username = 'me', int page = 0}) async =>
+  Future<List<Image>?> getImages({String username = 'me', int page = 0}) async =>
       BaseResponseList<Image>.fromJson(json.decode((await client.request(
                   HttpMethod.GET, '/3/account/$username/images/$page'))
               .body))
@@ -121,7 +121,7 @@ class AccountService extends BaseService {
   /// You can add sorting as well after paging. Sorts can be:
   /// [DateBestSort.newest] (default), [DateBestSort.oldest],
   /// [DateBestSort.worst], [DateBestSort.best].
-  Future<List<GalleryAlbumImage>> getSubmissions({
+  Future<List<GalleryAlbumImage>?> getSubmissions({
     String username = 'me',
     int page = 0,
     DateBestSort sort = DateBestSort.newest,
@@ -138,28 +138,28 @@ class AccountService extends BaseService {
   /// https://apidocs.imgur.com/?version=latest#7bc88d39-d06d-4661-afff-38ea5b9a1d0a
   Future<bool> updateSettings({
     /// The biography of the user, is displayed in the gallery profile page.
-    String bio,
+    String? bio,
 
     /// Set the users images to private or public by default.
-    bool publicImages,
+    bool? publicImages,
 
     /// Allows the user to enable / disable private messages.
-    bool messagingEnabled,
+    bool? messagingEnabled,
 
     /// The user agreement to the Imgur Gallery terms.
-    bool acceptedGalleryTerms,
+    bool? acceptedGalleryTerms,
 
     /// Toggle display of mature images in gallery list endpoints.
-    bool showMature,
+    bool? showMature,
 
     /// Toggle subscription to email newsletter.
-    bool newsletterSubscribed,
+    bool? newsletterSubscribed,
 
     /// Sets the default privacy level of albums the users creates.
-    Privacy albumPrivacy,
+    Privacy? albumPrivacy,
 
     /// A valid Imgur username (between 4 and 63 alphanumeric characters).
-    String username,
+    String? username,
   }) async {
     final body = <String, String>{};
 

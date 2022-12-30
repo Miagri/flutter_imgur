@@ -6,25 +6,25 @@ part of imgur.models;
 @JsonSerializable()
 class Message implements BaseModel {
   /// The ID for the message.
-  int id;
+  int? id;
 
   /// Account username of person sending the message.
-  String from;
+  String? from;
 
   /// The account ID of the person receiving the message.
   @JsonKey(name: 'account_id')
-  int accountId;
+  int? accountId;
 
   /// The account ID of the person who sent the message.
   @JsonKey(name: 'sender_id')
-  int senderId;
+  int? senderId;
 
   /// Text of the message.
-  String body;
+  String? body;
 
   /// ID for the overall conversation.
   @JsonKey(name: 'conversation_id')
-  int conversationId;
+  int? conversationId;
 
   /// Time message was sent.
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
@@ -37,7 +37,7 @@ class Message implements BaseModel {
     this.senderId,
     this.body,
     this.conversationId,
-    this.datetime,
+    required this.datetime,
   });
 
   factory Message.fromJson(Map<String, dynamic> json) =>

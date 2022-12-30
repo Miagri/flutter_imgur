@@ -9,7 +9,7 @@ class CommentService extends BaseService {
   /// Creates a new comment, returns the ID of the comment.
   ///
   /// https://apidocs.imgur.com/?version=latest#01dce1de-f332-4a14-88fa-25f97cc13613
-  Future<RawId> create(String imgId, String comment, {int parentId}) async {
+  Future<RawId> create(String imgId, String comment, {int? parentId}) async {
     final body = {
       'image_id': imgId,
       'comment': comment,

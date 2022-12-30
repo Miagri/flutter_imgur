@@ -28,7 +28,7 @@ class ImageService extends BaseService {
           .data;
 
   /// Get comments of given image.
-  Future<List<Comment>> getComments(String imgId,
+  Future<List<Comment>?> getComments(String imgId,
           {BestSort sort = BestSort.best}) async =>
       BaseResponseList<Comment>.fromJson(json.decode((await client.request(
                   HttpMethod.GET,
@@ -54,7 +54,7 @@ class ImageService extends BaseService {
   /// Updates the title or description of an image.
   ///
   /// https://apidocs.imgur.com/?version=latest#7db0c13c-bf70-4e87-aecf-047abc65686d
-  Future<bool> update(String imgId, {String title, String description}) async {
+  Future<bool> update(String imgId, {String? title, String? description}) async {
     final body = <String, String>{};
 
     if (title != null) {
@@ -72,30 +72,30 @@ class ImageService extends BaseService {
 
   /// Upload an image to your Imgur account.
   Future<Image> uploadImage({
-    File imageFile,
+    File? imageFile,
 
     /// Upload image from path.
-    String imagePath,
+    String? imagePath,
 
     /// Upload image from an Url.
-    String imageUrl,
+    String? imageUrl,
 
     /// An image
-    String imageBase64,
+    String? imageBase64,
 
     /// The id of the album you want to add the image to. For anonymous albums,
     /// album should be the delete hash that is returned at creation.
-    String albumId,
+    String? albumId,
 
     /// The name of the image, this is automatically detected if image is
     /// passed via imageFile parameter.
-    String name,
+    String? name,
 
     /// The title of the image.
-    String title,
+    String? title,
 
     /// The description of the image.
-    String description,
+    String? description,
   }) async {
     final files = <http.MultipartFile>[];
     final body = <String, String>{};
@@ -136,27 +136,27 @@ class ImageService extends BaseService {
 
   /// Upload a video to your Imgur account.
   Future<Image> uploadVideo({
-    File videoFile,
+    File? videoFile,
 
     /// Upload video from path.
-    String videoPath,
+    String? videoPath,
 
     /// The id of the album you want to add the image to. For anonymous albums,
     /// it should be the delete hash that is returned at creation.
-    String albumId,
+    String? albumId,
 
     /// The name of the image, this is automatically detected if image is passed
     /// via videoFile parameter.
-    String name,
+    String? name,
 
     /// The title of the video.
-    String title,
+    String? title,
 
     /// The description of the video.
-    String description,
+    String? description,
 
     /// Will remove the audio track from a video file
-    bool disableAudio,
+    bool? disableAudio,
   }) async {
     final files = <http.MultipartFile>[];
     final body = {'type': 'file'};
@@ -205,8 +205,8 @@ class ImageService extends BaseService {
   ///
   /// https://apidocs.imgur.com/?version=latest#c85c9dfc-7487-4de2-9ecd-66f727cf3139
   Future<Image> _upload({
-    List<http.MultipartFile> files,
-    Map<String, String> body
+    List<http.MultipartFile>? files,
+    Map<String, String>? body
   }) async {
     http.Response resp = await client.upload(
       HttpMethod.POST,
@@ -214,6 +214,7 @@ class ImageService extends BaseService {
       body: body,
       files: files,
     );
+    print("imgur - ${resp.body}");
     var baseResp = BaseResponse.fromJson(jsonDecode(resp.body));
     return Image.fromJson(baseResp.data);
   }

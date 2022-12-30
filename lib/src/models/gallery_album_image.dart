@@ -4,65 +4,65 @@ part of imgur.models;
 @JsonSerializable()
 class GalleryAlbumImage implements BaseModel {
   /// The ID for the image.
-  String id;
+  String? id;
 
   /// The title of the album in the gallery.
-  String title;
+  String? title;
 
   /// The description of the album in the gallery.
-  String description;
+  String? description;
 
   /// Time inserted into the gallery.
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
   DateTime datetime;
 
   /// The ID of the album cover image.
-  String cover;
+  String? cover;
 
   /// The width, in pixels, of the album cover image.
   @JsonKey(name: 'cover_width')
-  int coverWidth;
+  int? coverWidth;
 
   /// The height, in pixels, of the album cover image.
   @JsonKey(name: 'cover_height')
-  int coverHeight;
+  int? coverHeight;
 
   /// The account username or null if it's anonymous.
   @JsonKey(name: 'account_url')
-  String accountUrl;
+  String? accountUrl;
 
   /// The account ID of the account that uploaded it, or null.
   @JsonKey(name: 'account_id', nullable: true)
-  int accountId;
+  int? accountId;
 
   /// The privacy level of the album, you can only view public if not logged in
   /// as album owner.
-  String privacy;
+  String? privacy;
 
   /// The view layout of the album.
-  String layout;
+  String? layout;
 
   /// The number of image views.
-  int views;
+  int? views;
 
   /// The URL link to the album.
-  String link;
+  String? link;
 
   /// Upvotes for the image.
-  int ups;
+  int? ups;
 
   /// Number of downvotes for the image.
-  int downs;
+  int? downs;
 
   /// Upvotes minus downvotes.
-  int points;
+  int? points;
 
   /// Imgur popularity score.
-  int score;
+  int? score;
 
   /// if it's an album or not.
   @JsonKey(name: 'is_album')
-  bool isAlbum;
+  bool? isAlbum;
 
   /// The current user's vote on the album.
   ///
@@ -72,32 +72,32 @@ class GalleryAlbumImage implements BaseModel {
 
   /// The total number of image favorites.
   @JsonKey(name: 'favorite_count')
-  int favoriteCount;
+  int? favoriteCount;
 
   /// A list of tags associated with the image.
   @JsonKey(toJson: baseModelListToJson)
-  List<Tag> tags;
+  List<Tag?>? tags;
 
   /// If the video has sound or not.
   @JsonKey(nullable: true, name: 'has_sound')
-  bool hasSound;
+  bool? hasSound;
 
   /// Indicates if the current user has favorite the album.
   ///
   /// Defaults to false if not signed in.
-  bool favorite;
+  bool? favorite;
 
   /// Indicates if the album has been marked as nsfw or not.
   ///
   /// Defaults to null if information is not available.
-  bool nsfw;
+  bool? nsfw;
 
   /// Number of comments on the gallery album.
   @JsonKey(name: 'comment_count')
-  int commentCount;
+  int? commentCount;
 
   /// Topic of the gallery album.
-  String topic;
+  String? topic;
 
   /// Topic ID of the gallery album.
   @JsonKey(name: 'topic_id')
@@ -105,50 +105,50 @@ class GalleryAlbumImage implements BaseModel {
 
   /// The total number of images in the album.
   @JsonKey(name: 'images_count')
-  int imagesCount;
+  int? imagesCount;
 
   /// An array of all the images in the album.
   ///
   /// Only available when requesting the direct album.
   @JsonKey(toJson: baseModelListToJson)
-  List<Image> images;
+  List<Image?>? images;
 
   /// Indicates if the image is in the most viral gallery or not.
   @JsonKey(name: 'in_most_viral')
   dynamic inMostViral;
 
   /// Image MIME type.
-  String type;
+  String? type;
 
   /// Is the image animated.
-  bool animated;
+  bool? animated;
 
   /// The width of the image in pixels.
-  int width;
+  int? width;
 
   /// The height of the image in pixels.
-  int height;
+  int? height;
 
   /// The size of the image in bytes.
-  int size;
+  int? size;
 
   /// Bandwidth consumed by the image in bytes.
-  int bandwidth;
+  int? bandwidth;
 
   /// OPTIONAL, the delete hash, if you're logged in as the image owner.
   @JsonKey(nullable: true)
-  String deletehash;
+  String? deletehash;
 
   /// OPTIONAL, The .gifv link. Only available if the image is animated and
   /// type is 'image/gif'.
   @JsonKey(nullable: true)
-  String gifv;
+  String? gifv;
 
   /// OPTIONAL, The direct link to the .mp4.
   ///
   /// Only available if the image is animated and type is 'image/gif'.
   @JsonKey(nullable: true)
-  String mp4;
+  String? mp4;
 
   /// OPTIONAL, The Content-Length of the .mp4.
   ///
@@ -156,19 +156,19 @@ class GalleryAlbumImage implements BaseModel {
   /// Note that a zero value (0) is possible if the video has not yet been
   /// generated.
   @JsonKey(name: 'mp4_size', nullable: true)
-  int mp4Size;
+  int? mp4Size;
 
   /// OPTIONAL, Whether the image has a looping animation.
   ///
   /// Only available if the image is animated and type is 'image/gif'.
   @JsonKey(nullable: true)
-  bool looping;
+  bool? looping;
 
   GalleryAlbumImage({
     this.id,
     this.title,
     this.description,
-    this.datetime,
+   required this.datetime,
     this.cover,
     this.coverWidth,
     this.coverHeight,
@@ -186,7 +186,7 @@ class GalleryAlbumImage implements BaseModel {
     this.points,
     this.score,
     this.isAlbum,
-    this.vote,
+   required this.vote,
     this.favorite,
     this.nsfw,
     this.commentCount,

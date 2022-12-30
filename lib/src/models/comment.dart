@@ -6,39 +6,39 @@ part of imgur.models;
 @JsonSerializable()
 class Comment implements BaseModel {
   /// The ID for the comment.
-  int id;
+  int? id;
 
   /// The ID of the image that the comment is for.
   @JsonKey(name: 'image_id')
-  String imageId;
+  String? imageId;
 
   /// The comment text.
-  String comment;
+  String? comment;
 
   /// Username of the author of the comment.
-  String author;
+  String? author;
 
   /// The account ID for the author.
   @JsonKey(name: 'author_id')
-  int authorId;
+  int? authorId;
 
   /// If this comment was done to an album.
   @JsonKey(name: 'on_album')
-  bool onAlbum;
+  bool? onAlbum;
 
   /// The ID of the album cover image, this is what should be displayed for
   /// album comments.
   @JsonKey(name: 'album_cover')
-  String albumCover;
+  String? albumCover;
 
   /// Number of upvotes for the comment.
-  int ups;
+  int? ups;
 
   /// The number of downvotes for the comment.
-  int downs;
+  int? downs;
 
   /// the number of upvotes - downvotes.
-  double points;
+  double? points;
 
   /// Timestamp of creation.
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
@@ -47,10 +47,10 @@ class Comment implements BaseModel {
   /// If this is a reply, this will be the value of the comment_id for the
   /// caption this a reply for.
   @JsonKey(name: 'parent_id')
-  int parentId;
+  int? parentId;
 
   /// Marked true if this caption has been deleted.
-  bool deleted;
+  bool? deleted;
 
   /// The current user's vote on the comment. null if not signed in or if the
   /// user hasn't voted on it.
@@ -60,7 +60,7 @@ class Comment implements BaseModel {
   /// All of the replies for this comment. If there are no replies to the
   /// comment then this is an empty set.
   @JsonKey(toJson: baseModelListToJson)
-  List<Comment> children;
+  List<Comment?>? children;
 
   Comment(
       {this.id,
@@ -71,12 +71,12 @@ class Comment implements BaseModel {
       this.ups,
       this.downs,
       this.points,
-      this.datetime,
+      required this.datetime,
       this.author,
       this.authorId,
       this.parentId,
       this.deleted,
-      this.vote,
+     required this.vote,
       this.children});
 
   factory Comment.fromJson(Map<String, dynamic> json) =>

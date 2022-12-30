@@ -6,65 +6,65 @@ part of imgur.models;
 @JsonSerializable()
 class GalleryAlbum implements BaseModel {
   /// The ID for the image.
-  String id;
+  String? id;
 
   /// The title of the album in the gallery.
-  String title;
+  String? title;
 
   /// The description of the album in the gallery.
-  String description;
+  String? description;
 
   /// Time inserted into the gallery.
   @JsonKey(fromJson: _dateTimeFromTimestamp, toJson: _dateTimeToTimestamp)
   DateTime datetime;
 
   /// The ID of the album cover image.
-  String cover;
+  String? cover;
 
   /// The width, in pixels, of the album cover image.
   @JsonKey(name: 'cover_width')
-  int coverWidth;
+  int? coverWidth;
 
   /// The height, in pixels, of the album cover image.
   @JsonKey(name: 'cover_height')
-  int coverHeight;
+  int? coverHeight;
 
   /// The account username or null if it's anonymous.
   @JsonKey(name: 'account_url')
-  String accountUrl;
+  String? accountUrl;
 
   /// The account ID of the account that uploaded it, or null.
   @JsonKey(name: 'account_id', nullable: true)
-  int accountId;
+  int? accountId;
 
   /// The privacy level of the album, you can only view public if not logged
   /// in as album owner.
-  String privacy;
+  String? privacy;
 
   /// The view layout of the album.
-  String layout;
+  String? layout;
 
   /// The number of image views.
-  int views;
+  int? views;
 
   /// The URL link to the album.
-  String link;
+  String? link;
 
   /// Upvotes for the image.
-  int ups;
+  int? ups;
 
   /// Number of downvotes for the image.
-  int downs;
+  int? downs;
 
   /// Upvotes minus downvotes.
-  int points;
+  int? points;
 
   /// Imgur popularity score.
-  int score;
+  int? score;
 
   /// if it's an album or not.
   @JsonKey(name: 'is_album')
-  bool isAlbum;
+  bool? isAlbum;
 
   /// The current user's vote on the album. null if not signed in or if the
   /// user hasn't voted on it.
@@ -73,28 +73,28 @@ class GalleryAlbum implements BaseModel {
 
   /// The total number of image favorites.
   @JsonKey(name: 'favorite_count')
-  int favoriteCount;
+  int? favoriteCount;
 
   /// A list of tags associated with the image.
   @JsonKey(toJson: baseModelListToJson)
-  List<Tag> tags;
+  List<Tag?>? tags;
 
   /// Indicates if the current user has favorite the album.
   ///
   /// Defaults to false if not signed in.
-  bool favorite;
+  bool? favorite;
 
   /// Indicates if the album has been marked as nsfw or not.
   ///
   /// Defaults to null if information is not available.
-  bool nsfw;
+  bool? nsfw;
 
   /// Number of comments on the gallery album.
   @JsonKey(name: 'comment_count')
-  int commentCount;
+  int? commentCount;
 
   /// Topic of the gallery album.
-  String topic;
+  String? topic;
 
   /// Topic ID of the gallery album.
   @JsonKey(name: 'topic_id')
@@ -102,13 +102,13 @@ class GalleryAlbum implements BaseModel {
 
   /// The total number of images in the album.
   @JsonKey(name: 'images_count')
-  int imagesCount;
+  int? imagesCount;
 
   /// An array of all the images in the album.
   ///
   /// Only available when requesting the direct album.
   @JsonKey(toJson: baseModelListToJson)
-  List<Image> images;
+  List<Image?>? images;
 
   @JsonKey(name: 'in_most_viral')
   dynamic inMostViral;
@@ -117,7 +117,7 @@ class GalleryAlbum implements BaseModel {
       {this.id,
       this.title,
       this.description,
-      this.datetime,
+      required this.datetime,
       this.cover,
       this.coverWidth,
       this.coverHeight,
@@ -132,7 +132,7 @@ class GalleryAlbum implements BaseModel {
       this.points,
       this.score,
       this.isAlbum,
-      this.vote,
+      required this.vote,
       this.favorite,
       this.nsfw,
       this.commentCount,

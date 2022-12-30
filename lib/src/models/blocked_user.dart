@@ -5,11 +5,11 @@ part of imgur.models;
 class BlockedUser implements BaseModel {
   /// The id of the blocked user.
   @JsonKey(name: 'blocked_id')
-  String id;
+  String? id;
 
   /// The url of the blocked user.
   @JsonKey(name: 'blocked_url')
-  String url;
+  String? url;
 
   BlockedUser({this.id, this.url});
 

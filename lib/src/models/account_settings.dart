@@ -7,18 +7,18 @@ part of imgur.models;
 class AccountSettings implements BaseModel {
   /// The account username.
   @JsonKey(name: 'account_url')
-  String accountUrl;
+  String? accountUrl;
 
   /// The users email address.
-  String email;
+  String? email;
 
   /// Automatically allow all images to be publicly accessible.
   @JsonKey(name: 'public_images')
-  bool publicImages;
+  bool? publicImages;
 
   /// Set the album privacy to this privacy setting on creation.
   @JsonKey(name: 'album_privacy')
-  String albumPrivacy;
+  String? albumPrivacy;
 
   /// False if not a pro user, their expiration date if they are.
   @JsonKey(name: 'pro_expiration')
@@ -26,28 +26,28 @@ class AccountSettings implements BaseModel {
 
   /// True if the user has accepted the terms of uploading to the Imgur gallery.
   @JsonKey(name: 'accepted_gallery_terms')
-  bool acceptedGalleryTerms;
+  bool? acceptedGalleryTerms;
 
   /// The email addresses that have been activated to allow uploading.
   @JsonKey(name: 'active_emails')
-  List<String> activeEmails;
+  List<String>? activeEmails;
 
   /// If the user is accepting incoming messages or not.
   @JsonKey(name: 'messaging_enabled')
-  bool messagingEnabled;
+  bool? messagingEnabled;
 
   /// An array of users that have been blocked from messaging.
   @JsonKey(name: 'blocked_users', toJson: baseModelListToJson)
-  List<BlockedUser> blockedUsers;
+  List<BlockedUser?>? blockedUsers;
 
   /// True if the user has opted to have mature images displayed in gallery
   /// list endpoints.
   @JsonKey(name: 'show_mature')
-  bool showMature;
+  bool? showMature;
 
   /// True unless the user created their account via a third party service.
   @JsonKey(name: 'first_party')
-  bool firstParty;
+  bool? firstParty;
 
   AccountSettings({
     this.accountUrl,
@@ -58,7 +58,7 @@ class AccountSettings implements BaseModel {
     this.acceptedGalleryTerms,
     this.activeEmails,
     this.messagingEnabled,
-    this.blockedUsers,
+    required this.blockedUsers,
     this.showMature,
     this.firstParty,
   });
